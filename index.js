@@ -10,7 +10,7 @@ const _data = require('./lib/data');
 const httpServer = http.createServer((req, res) => {
   unifiedServer(req, res);
 });
-
+  
 httpServer.listen(config.httpPort, () => {
   console.log(`The server is listening on port ${config.httpPort}`);
 });
