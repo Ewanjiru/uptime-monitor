@@ -2,11 +2,14 @@ const url = require('url');
 const stringDecoder = require('string_decoder').StringDecoder;
 
 const parsesJson = require('./parseJson');
-const handlers = require('../lib/handlers');
+const userHandlers = require('../lib/handlers');
+const tokenHandlers = require('../lib/tokenHandlers');
+
 
 const router = {
-  'ping': handlers.ping,
-  'users': handlers.users
+  'ping': userHandlers.ping,
+  'users': userHandlers.users,
+  'tokens': tokenHandlers.tokens
 };
 const unifiedServer = (req, res) => {
   const parseUrl = url.parse(req.url, true);
@@ -25,7 +28,7 @@ const unifiedServer = (req, res) => {
 
   req.on('end', () => {
     buffer += decoder.end();
-    const choosenHandler = typeof (router[trimPath]) !== 'undefined' ? router[trimPath] : handlers.notFound;
+    const choosenHandler = typeof (router[trimPath]) !== 'undefined' ? router[trimPath] : userHandlers.notFound;
     const data = {
       'trimPath': trimPath,
       'queryStringObject': queryString,
