@@ -4,12 +4,14 @@ const stringDecoder = require('string_decoder').StringDecoder;
 const parsesJson = require('./parseJson');
 const userHandlers = require('../lib/handlers');
 const tokenHandlers = require('../lib/tokenHandlers');
+const checksHandler = require('../lib/checksHandler');
 
 
 const router = {
   'ping': userHandlers.ping,
   'users': userHandlers.users,
-  'tokens': tokenHandlers.tokens
+  'tokens': tokenHandlers.tokens,
+  'checks': checksHandler.checks
 };
 const unifiedServer = (req, res) => {
   const parseUrl = url.parse(req.url, true);

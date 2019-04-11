@@ -7,7 +7,6 @@ function createRandomString(length) {
     let char = possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
     generatedStr += char;
   }
-  console.log('id length', generatedStr);
 
   return generatedStr;
 };
